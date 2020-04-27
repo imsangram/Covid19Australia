@@ -1,0 +1,75 @@
+.container {
+    margin: 0 0;
+    }
+    
+    .card{
+        margin:0 2% !important
+    }
+    
+    .total{
+        border-bottom: 10px solid rgba(255, 0, 200, 0.5);
+    }
+
+    .infected{
+        border-bottom: 10px solid rgba(0,0,255,0.5);
+    }
+    
+    .recovered{
+        border-bottom: 10px solid rgba(0,255,0,0.5);
+    }
+    
+    .positive{
+        color: rgb(40,167,69) !important;
+    }
+
+    .negative{
+        color: rgb(244, 67, 54) !important;
+    }
+
+    .active {
+        color:rgb(0, 123, 255) !important;
+    }
+    .neutral{
+        color:rgba(255,7,58,.6);
+    }
+
+    .bgpositive{
+        background: rgba(40,167,69,.12549) !important;
+    }
+
+    .bgnegative{
+        background: rgba(255,7,58,.12549) !important;
+    }
+    
+    .bgactive {
+        background:rgba(0,123,255,.0627451) !important;
+    }
+
+    .bgneutral{
+        background: rgba(108,117,125,.0627451);
+    }
+    .deaths{
+        border-bottom: 10px solid rgba(255,0,0,0.5);
+    }
+
+    .marginTop10{
+        margin-top:10px !important;
+    }
+
+    .padding5{
+        padding: 5px !important;
+    }
+    
+    .anmiDelay2{
+        animation-delay: '2s';
+    }
+    .roundBorder{
+        border-radius: 5px;
+        padding: 3px !important;
+        border: 2px solid #fafafa;
+    }
+    @media (max-width: 770px){
+        .card{
+            margin: 2% 0 !important;
+        }
+    }
