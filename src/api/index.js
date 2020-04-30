@@ -1,8 +1,8 @@
 import axios from 'axios';
-const url = "https://covid19.mathdro.id/api";
+import { GLOBAL_DATA_API_URL } from '../constants';
 
 export const fetchData = async (country) => {
-    const dynamicurl = country ? `${url}/countries/${country}` : url;
+    const dynamicurl = country ? `${GLOBAL_DATA_API_URL}/countries/${country}` : GLOBAL_DATA_API_URL;
     try {
         const { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(dynamicurl);
 
@@ -20,7 +20,7 @@ export const fetchData = async (country) => {
 
 export const fetchDailyData = async () => {
     try {
-        const { data } = await axios.get(`${url}/daily`);
+        const { data } = await axios.get(`${GLOBAL_DATA_API_URL}/daily`);
         const modifiedData = data.map(d => ({
             confirmed: d.confirmed.total,
             deaths: d.deaths.total,

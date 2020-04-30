@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Cards, Charts, CountryPicker } from './components';
-import { fetchData } from './api/index';
-import styles from './App.module.css'
-
+import React from 'react';
 import AppHeader from './components/Layout/AppHeader';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import archia from './utils/FontAcrhia'
+import archia from './utils/FontAcrhia';
 import './App.scss';
-import Main from './components/Layout/Main';
-import { Divider } from '@material-ui/core';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
+import { routerPages } from './router';
+import AppFooter from './components/Layout/Footer/AppFooter';
+
 
 // Override the default Material UI Theme
 const theme = createMuiTheme({
@@ -47,45 +47,60 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+    h6: {
+        color: '#fff',
+        textDecoration: 'none'
+    },
+    h1: {
+        fontSize: 24
+    },
+    container: {
+        position: 'relative',
+        minHeight: '100vh'
+    },
+    footer: {
+        padding: theme.spacing(3, 2),
+        marginTop: 'auto',
+        // backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+    },
+    link: {
+        color: 'inherit',
+        textDecoration: 'none',
+    }
 }));
 
 
+
+
 const App = () => {
-
-    useEffect(() => {
-        const fetchedData = async () => {
-            setData(await fetchData());
-        };
-        fetchedData();
-    }, []);
-
-    //set State
-    const [data, setData] = useState({});
-    const [country, setCountry] = useState('');
-
-
-
-    const handlCountryChange = async (country) => {
-        const fetchedData = await fetchData(country);
-        setData(fetchedData);
-        setCountry(country);
-    }
-
+    const pages = routerPages;
     const classes = useStyles();
 
     return (
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <AppHeader />
-                <Main classes={classes} styles={styles} />
-                <Divider variant="middle" style={{ marginTop: '30px' }} />
-                <div className={styles.container}>
-                    <h2>Global COVID-19 Stats</h2>
-                    <Cards data={data} />
-                    <CountryPicker handleCountryChange={handlCountryChange} />
-                    <Charts data={data} country={country} />
-                </div>
+                <Router>
+                    <AppHeader classes={classes} />
+                    <div>
+                        <AnimatedSwitch
+                            atEnter={{ opacity: 0 }}
+                            atLeave={{ opacity: 0 }}
+                            atActive={{ opacity: 1 }}>
+                            {pages.map((page, i) => {
+                                return (
+                                    <Route
+                                        exact
+                                        path={page.pageLink}
+                                        component={page.view}
+                                        key={i}
+                                    />
+                                );
+                            })}
+                        </AnimatedSwitch>
+                    </div>
+                    <AppFooter classes={classes} />
+                </Router>
             </ThemeProvider>
         </>)
 }

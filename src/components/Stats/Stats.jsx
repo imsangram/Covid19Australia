@@ -5,6 +5,7 @@ import CountUp from 'react-countup';
 import cx from 'classnames';
 import { timeSince } from '../../utils/commonHelper.js';
 import { fetchCovidCount } from '../../api/mapApi';
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const Stats = () => {
     // if (!confirmed) {
@@ -24,7 +25,7 @@ const Stats = () => {
     }, [])
 
 
-    const { confirmed, recovered, deaths, newConfirmed, newDeaths, lastUpdated } = topCovidData;
+    const { confirmed, recovered, deaths, newConfirmed, newRecovered, newDeaths, lastUpdated } = topCovidData;
     return (
         <div id={"states"} className={styles.container}>
             <div>
@@ -65,7 +66,7 @@ const Stats = () => {
                                         <CountUp start={0} end={recovered} duration={2.5} separator="," />
                                     </Typography>
                                     <Typography variant="body1" gutterBottom>
-                                        + {100}
+                                        + {newRecovered}
                                     </Typography>
                                 </CardContent>
                             </Grid>
@@ -80,7 +81,7 @@ const Stats = () => {
                                     </Typography>
                                 </CardContent>
                             </Grid></>
-                        ) : 'Loading ...'
+                        ) : <Skeleton variant="rect" height={100} />
                 }
 
             </Grid>

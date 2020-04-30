@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Sidebar from './Sidebar/Sidebar';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
+    h6: {
+        color: '#fff',
+        textDecoration: 'none'
+    },
+    h1: {
+        fontSize: 24
+    }
 }));
 
 
@@ -35,9 +43,9 @@ export default function AppHeader() {
                     <IconButton onClick={() => onClickToggle()} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        COVID-19 Australia
-                     </Typography>
+                    <Typography variant="h1" className={classes.h1}>
+                        <Link className={classes.h6} to='/'>COVID-19 Australia</Link>
+                    </Typography>
                 </Toolbar>
             </AppBar>
             <Sidebar toggleDrawer={toggleDrawer} />

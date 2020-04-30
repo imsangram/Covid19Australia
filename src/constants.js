@@ -1,3 +1,6 @@
+export const API_URL = 'https://raw.githubusercontent.com/imsangram/covid19Australia-api/master';
+export const GLOBAL_DATA_API_URL = 'https://covid19.mathdro.id/api';
+
 export const STATE_CODES = {
     NSW: 'New South Wales',
     QLD: 'Queensland',
