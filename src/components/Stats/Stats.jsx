@@ -44,7 +44,7 @@ const Stats = () => {
                                     <CountUp start={0} end={confirmed} duration={2.5} separator="," />
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    + {newConfirmed}
+                                    {newConfirmed > 0 ? '+' + newConfirmed : ''}
                                 </Typography>
                             </CardContent>
                         </Grid>
@@ -66,7 +66,7 @@ const Stats = () => {
                                         <CountUp start={0} end={recovered} duration={2.5} separator="," />
                                     </Typography>
                                     <Typography variant="body1" gutterBottom>
-                                        + {newRecovered}
+                                        {newRecovered > 0 ? '+' + newRecovered : ''}
                                     </Typography>
                                 </CardContent>
                             </Grid>
@@ -77,7 +77,7 @@ const Stats = () => {
                                         <CountUp start={0} end={deaths} duration={2.5} separator="," />
                                     </Typography>
                                     <Typography variant="body1" gutterBottom>
-                                        + {newDeaths}
+                                        {newDeaths > 0 ? '+' + newDeaths : ''}
                                     </Typography>
                                 </CardContent>
                             </Grid></>
