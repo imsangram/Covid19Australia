@@ -18,7 +18,7 @@ const AppFooter = ({ classes }) => {
         <>
             <Divider />
             <footer className={classes.footer}>
-                <Grid container spacing={3}>
+                <Grid container spacing={0}>
                     <Grid item xs={6} md={3} lg={3}>
                         Fork us on <Button
                             variant="contained"

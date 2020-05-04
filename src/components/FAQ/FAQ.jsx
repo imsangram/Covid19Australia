@@ -12,6 +12,7 @@ export default function FAQ() {
                     <Divider />
                     <h4>Are you official?</h4>
                     <p>No.</p>
+                    <p>This is a personal project and is in no way affliated with the Australian Government or any other Organization. All the latest reliable information for Australia can be found at https://www.australia.gov.au/</p>
                     <h4>What is the purpose of the website?</h4>
                     <p>To make it easier to keep track of COVID-19 cases in Australia.</p>
                     <h4>Where do you get your data from ?</h4>

@@ -35,7 +35,7 @@ const Main = ({ classes, styles }) => {
                     <Grid item className={layoutStyles.paddingTop20}>
                         <MiniStats key={topData} data={topData} />
                     </Grid>
-                    <Typography gutterBottom variant="caption">
+                    <Typography gutterBottom variant="subtitle2">
                         Select a state for more details
                             </Typography>
                     <Grid item xs={12} sm={12} lg={8} style={{ margin: 'auto' }} pt={10}>
