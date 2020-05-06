@@ -43,19 +43,18 @@ const MiniStats = (props) => {
                                 <Typography variant="body2">Confirmed</Typography>
                                 <Typography variant="h6">{selectedState.confirmed}</Typography>
                             </Grid>
+                            <Grid item xs={3} className={cx(styles.bgneutral, styles.roundBorder)}>
+                                <Typography variant="body2">Deaths</Typography>
+                                <Typography variant="h6">{selectedState.deaths}</Typography>
+                            </Grid>
                             <Grid item xs={3} className={cx(styles.bgactive, styles.active, styles.roundBorder)}>
                                 <Typography variant="body2">Active</Typography>
-                                <Typography variant="h6">{(selectedState.confirmed - (selectedState.deaths + selectedState.recovered))}</Typography>
+                                <Typography variant="h6">{selectedState.active}</Typography>
                             </Grid>
                             <Grid item xs={3} className={cx(styles.bgpositive, styles.positive, styles.roundBorder)}>
                                 <Typography color="inherit" variant="body2">Recovered</Typography>
                                 <Typography color="initial" variant="h6">{selectedState.recovered}</Typography>
                             </Grid>
-                            <Grid item xs={3} className={cx(styles.bgneutral, styles.roundBorder)}>
-                                <Typography variant="body2">Deaths</Typography>
-                                <Typography variant="h6">{selectedState.deaths}</Typography>
-                            </Grid>
-
                         </Grid>
                     </>)
                     : 'Loading ...'

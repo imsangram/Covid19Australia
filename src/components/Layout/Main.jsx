@@ -10,6 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import cx from 'classnames';
 import DailyChart from '../Charts/DailyChart';
 import StateWiseChart from '../Charts/StateWiseChart';
+import { sortBy } from '../../utils/commonHelper'
 const Main = ({ classes, styles }) => {
 
     const [topData, setTopData] = useState([]);
@@ -44,7 +45,7 @@ const Main = ({ classes, styles }) => {
                     <Divider variant="middle" />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <StateTable key={topData} statesData={topData} />
+                    <StateTable key={topData} statesData={topData.sort(sortBy("active", "desc"))} />
                     <StateWiseChart chartData={topData} />
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>

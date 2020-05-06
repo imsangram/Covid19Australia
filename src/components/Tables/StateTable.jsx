@@ -35,7 +35,7 @@ const StateTable = ({ statesData }) => {
                                     {row.name}
                                 </TableCell>
                                 <TableCell align="right">{row.confirmed}</TableCell>
-                                <TableCell align="right">{(row.confirmed - (row.recovered + row.deaths))}</TableCell>
+                                <TableCell align="right">{row.active}</TableCell>
                                 <TableCell align="right">{row.recovered}</TableCell>
                                 <TableCell align="right">{row.deaths}</TableCell>
                             </TableRow>

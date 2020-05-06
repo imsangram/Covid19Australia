@@ -1,6 +1,6 @@
 export const API_URL = 'https://raw.githubusercontent.com/imsangram/covid19Australia-api/master';
 export const GLOBAL_DATA_API_URL = 'https://covid19.mathdro.id/api';
-export const DYNAMIC_API_URL = 'https://puppeteer-test-001.herokuapp.com';
+export const DYNAMIC_API_URL = 'https://api.jsonbin.io/b/5eb204aa47a2266b14737fbe';
 
 export const STATE_CODES = {
     NSW: 'New South Wales',
