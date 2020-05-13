@@ -11,8 +11,8 @@ export const fetchCovidCount = async () => {
 
 export const fetchDailyCovidCount = async () => {
     try {
-        const { data } = await axios.get(`${API_URL}/api/australia_daily.json`);
-        return data;
+        const { data } = await axios.get(`${DYNAMIC_API_URL}`);
+        return data.dailyData;
     } catch (error) {
         console.log(error);
     }
