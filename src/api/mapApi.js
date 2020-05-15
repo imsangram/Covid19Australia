@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, DYNAMIC_API_URL } from '../constants';
+import { DYNAMIC_API_URL } from '../constants';
 export const fetchCovidCount = async () => {
     try {
         const { data } = await axios.get(`${DYNAMIC_API_URL}`);

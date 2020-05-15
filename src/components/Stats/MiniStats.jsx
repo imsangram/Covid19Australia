@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import styles from './Stats.module.css';
 import cx from 'classnames';
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const MiniStats = (props) => {
 
@@ -57,7 +58,15 @@ const MiniStats = (props) => {
                             </Grid>
                         </Grid>
                     </>)
-                    : 'Loading ...'
+                    : (
+                        <>
+                            <Grid container spacing={1} p={5}>
+                                <Grid item xs={12}>
+                                    <Skeleton variant="rect" height={100} animation="wave" />
+                                </Grid>
+                            </Grid>
+                        </>
+                    )
             }
         </>
     );

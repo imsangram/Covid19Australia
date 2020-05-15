@@ -9,8 +9,21 @@ export const STATE_CODES = {
     TAS: 'Tasmania',
     VIC: 'Victoria',
     WA: 'Western Australia',
+    ACT: 'Australian Capital Territory',
+    NT: 'North Territory'
 };
 
+export const statesArray = [
+    { id: 'AUS', name: 'Australia' },
+    { id: 'ACT', name: 'Australian Capital Territory' },
+    { id: 'NSW', name: 'New South Wales' },
+    { id: 'NT', name: 'North Territory' },
+    { id: 'QLD', name: 'Queensland' },
+    { id: 'SA', name: 'South Australia' },
+    { id: 'TAS', name: 'Tasmania' },
+    { id: 'VIC', name: 'Victoria' },
+    { id: 'WA', name: 'Western Australia' }
+];
 const reverseStateCodes = {};
 Object.keys(STATE_CODES).map((key, index) => {
     reverseStateCodes[STATE_CODES[key]] = key;
@@ -24,4 +37,5 @@ Object.keys(STATE_CODES).map((key, index) => {
     return null;
 });
 export const STATE_CODES_ARRAY = stateCodes;
+
 
