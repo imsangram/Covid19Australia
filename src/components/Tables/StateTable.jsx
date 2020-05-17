@@ -8,10 +8,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import Skeleton from '@material-ui/lab/Skeleton'
+import Skeleton from '@material-ui/lab/Skeleton';
+import { sortBy } from '../../utils/commonHelper'
 
 const StateTable = ({ statesData }) => {
-
+    const sortedStates = statesData ? statesData.sort(sortBy("active", "desc")) : null;
     return (
         <>
 
@@ -21,7 +22,7 @@ const StateTable = ({ statesData }) => {
                 </Typography>
             </div>
             {
-                statesData?.length > 0 ?
+                sortedStates?.length > 0 ?
                     (
                         <>
                             <TableContainer component={Paper}>
@@ -36,7 +37,7 @@ const StateTable = ({ statesData }) => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {statesData.map((row) => (
+                                        {sortedStates.map((row) => (
                                             <TableRow key={row.id}>
                                                 <TableCell component="th" scope="row">
                                                     <Link to={"/state/" + row.id}>{row.name}</Link>
@@ -54,7 +55,11 @@ const StateTable = ({ statesData }) => {
                         </>
                     ) :
                     (
-                        <Skeleton variant="rect" height={300} animation="wave" />
+                        <>
+                            {
+                                Array(8).fill(0).map((x, i) => <Skeleton key={i} height={40} animation="wave" />)
+                            }
+                        </>
                     )
             }
         </>

@@ -18,7 +18,7 @@ const defProps = {
 const LineChart = ({ header = defProps.header, title = defProps.title, labelArray, dataArray }) => {
 
     useEffect(() => {
-        if (labelArray.length > 0) {
+        if (labelArray?.length > 0) {
             setChartData({ header, title, labels: labelArray, data: [...dataArray] });
         }
     }, [header, title, labelArray, dataArray])

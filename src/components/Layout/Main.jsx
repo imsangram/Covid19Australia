@@ -1,41 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Map from '../Map/Map'
 import StateTable from '../../components/Tables/StateTable';
 import Stats from '../Stats/Stats';
 import layoutStyles from './layout.module.css';
 import { Grid, Typography } from '@material-ui/core';
 import MiniStats from '../Stats/MiniStats';
-import { fetchCovidCount, fetchDailyCovidCount } from '../../api/mapApi';
-import Divider from '@material-ui/core/Divider';
 import cx from 'classnames';
 import DailyChart from '../Charts/DailyChart';
 import StateWiseChart from '../Charts/StateWiseChart';
-import { sortBy } from '../../utils/commonHelper'
 import BarChart from '../Charts/BarChart';
 import LineChart from '../Charts/LineChart';
+import { CovidDataContext } from '../Context/CovidDataContext';
+
 const Main = ({ classes, styles }) => {
 
-    const [topData, setTopData] = useState([]);
-    const [territoryData, setTerritoryData] = useState([]);
-    const [dailyData, setDailyData] = useState([]);
+    const { globalCovidData } = useContext(CovidDataContext);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await fetchCovidCount();
-            if (data?.states) {
-                setTopData(data);
-                setTerritoryData(data.states)
-            };
-        }
-        const fetchDailyData = async () => {
-            const dailyData = await fetchDailyCovidCount();
-            if (dailyData) {
-                setDailyData(dailyData);
-            };
-        }
-        fetchData();
-        fetchDailyData();
-    }, [])
+    const topData = globalCovidData || null;
+    const territoryData = globalCovidData?.states || null;
+    const dailyData = globalCovidData?.dailyData || null;
+
+    const reporData = dailyData?.map(x => x.reportDate) || null;
+    const confirmedData = dailyData?.map(x => x.confirmed) || null;
+    const newCasesData = dailyData?.map(x => x.newCases) || null;
+    const deathsData = dailyData?.map(x => x.deaths) || null;
+    // const [topData, setTopData] = useState([]);
+    // const [territoryData, setTerritoryData] = useState([]);
+    // const [dailyData, setDailyData] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const data = await fetchCovidCount();
+    //         if (data?.states) {
+    //             setTopData(data);
+    //             setTerritoryData(data.states)
+    //         };
+    //     }
+    //     const fetchDailyData = async () => {
+    //         const dailyData = await fetchDailyCovidCount();
+    //         if (dailyData) {
+    //             setDailyData(dailyData);
+    //         };
+    //     }
+    //     fetchData();
+    //     fetchDailyData();
+    // }, [])
 
     return (
 
@@ -64,17 +73,17 @@ const Main = ({ classes, styles }) => {
                     <Grid item xs={12} sm={12} lg={8} style={{ margin: 'auto' }} pt={10}>
                         <Map key={territoryData} data={territoryData} />
                     </Grid>
-                    <Divider variant="middle" />
+
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <StateTable key={territoryData} statesData={territoryData.sort(sortBy("active", "desc"))} />
+                    <StateTable key={territoryData} statesData={territoryData} />
                     <StateWiseChart chartData={territoryData} />
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>
-                    <BarChart header="Daily New Cases in Australia" title={"New Cases"} labelArray={dailyData.map(x => x.reportDate)} dataArray={dailyData.map(x => x.newCases)} />
-                    <LineChart header="Cumulative Cases in Australia" title={"Cumulative Cases"} labelArray={dailyData.map(x => x.reportDate)} dataArray={dailyData.map(x => x.confirmed)} />
+                    <BarChart header="Daily New Cases in Australia" title={"New Cases"} labelArray={reporData} dataArray={newCasesData} />
+                    <LineChart header="Cumulative Cases in Australia" title={"Cumulative Cases"} labelArray={reporData} dataArray={confirmedData} />
                     <DailyChart />
-                    <BarChart header="Deaths in Australia" title={"New Deaths"} labelArray={dailyData.map(x => x.reportDate)} dataArray={dailyData.map(x => x.newDeaths)} />
+                    <BarChart header="Deaths in Australia" title={"New Deaths"} labelArray={reporData} dataArray={deathsData} />
                 </Grid>
             </Grid>
         </div >

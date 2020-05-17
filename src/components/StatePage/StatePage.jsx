@@ -1,11 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import statePageStyles from './StatePage.module.css';
-import { fetchCovidCount, fetchDailyCovidCount } from '../../api/mapApi';
 import BarChart from '../Charts/BarChart';
 import cx from 'classnames';
 import Stats from '../Stats/Stats';
 import LineChart from '../Charts/LineChart';
+import { CovidDataContext } from '../Context/CovidDataContext';
+
 const StatePage = ({ match }) => {
+
+    const { globalCovidData } = useContext(CovidDataContext);
+    const paramId = match.params.id;
+
+    const topData = globalCovidData?.states?.filter(x => x.id === match.params.id)[0] || null;
+    const stateName = topData?.name || 'loading ...';
+    const dailyData = globalCovidData?.dailyData?.map(x => ({ reportDate: x.reportDate, confirmed: x[paramId.toLowerCase()].confirmed, deaths: x[paramId.toLowerCase()].deaths })) || null;
+
+    const reporData = dailyData?.map(x => x.reportDate) || null;
+    const confirmedData = dailyData?.map(x => x.confirmed) || null;
+    const deathsData = dailyData?.map(x => x.deaths) || null;
+
+    /*******         
+     * 
+     * Replaced useEffect, useState with Context API 
+    * 
 
     useEffect(() => {
 
@@ -35,29 +52,18 @@ const StatePage = ({ match }) => {
         fetchDailyStats();
     }, [])
 
-    const statesArray = [
-        { id: 'AUS', name: 'Australia' },
-        { id: 'ACT', name: 'Australian Capital Territory' },
-        { id: 'NSW', name: 'New South Wales' },
-        { id: 'NT', name: 'North Territory' },
-        { id: 'QLD', name: 'Queensland' },
-        { id: 'SA', name: 'South Australia' },
-        { id: 'TAS', name: 'Tasmania' },
-        { id: 'VIC', name: 'Victoria' },
-        { id: 'WA', name: 'Western Australia' }
-    ];
     const [topData, setTopData] = useState([]);
     const [dailyData, setDailyData] = useState([]);
     const [stateName, setStateName] = useState('');
-
-
+    
+    *******/
     return (
         <>
             <div className={cx(statePageStyles.margin3, statePageStyles.paddingTop20)}>
                 <h1>{stateName}</h1>
                 <Stats data={topData} />
-                <BarChart header={"Cumulative Covid-19 Cases in " + stateName} title={"New Cases"} labelArray={dailyData.map(x => x.reportDate)} dataArray={dailyData.map(x => x.confirmed)} />
-                <LineChart header={"Fatal Cases in " + stateName} title={"Deaths"} labelArray={dailyData.map(x => x.reportDate)} dataArray={dailyData.map(x => x.deaths)} />
+                <BarChart header={"Cumulative Covid-19 Cases in " + stateName} title={"New Cases"} labelArray={reporData} dataArray={confirmedData} />
+                <LineChart header={"Fatal Cases in " + stateName} title={"Deaths"} labelArray={reporData} dataArray={deathsData} />
             </div>
         </>
 

@@ -9,7 +9,7 @@ import Skeleton from '@material-ui/lab/Skeleton'
 
 const Stats = ({ data }) => {
 
-    const { confirmed, recovered, deaths, active, newConfirmed, newRecovered, newDeaths, newActive, lastUpdated } = data;
+    const { confirmed, recovered, deaths, active, newConfirmed, newRecovered, newDeaths, newActive, lastUpdated } = data || {};
 
     return (
         <>
@@ -69,8 +69,8 @@ const Stats = ({ data }) => {
                             </>
                             ) :
                             <>
-                                {[1, 2, 3, 4].map(x => (
-                                    <Grid key={x} item component={Card} xs className={styles.card}>
+                                {Array(4).fill(0).map((x, i) => (
+                                    <Grid key={i} item component={Card} xs className={styles.card}>
                                         <Skeleton variant="rect" height={140} animation="wave" />
                                     </Grid>)
                                 )}

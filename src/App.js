@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styles from './App.module.css'
 import AppHeader from './components/Layout/AppHeader';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import archia from './utils/FontAcrhia';
 import './App.scss';
-
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import { routerPages } from './router';
 import AppFooter from './components/Layout/Footer/AppFooter';
-
+import { CovidDataContext } from './components/Context/CovidDataContext';
+import { fetchCovidCount } from './api/mapApi';
+import ScrollToTop from './components/HighOrder/ScrollToTop';
 
 // Override the default Material UI Theme
 const theme = createMuiTheme({
@@ -71,9 +72,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 const App = () => {
+
+    useEffect(() => {
+        const fetchGlobalData = async () => {
+            const data = await fetchCovidCount();
+            if (data) {
+                setGlobalCovidData(data);
+            };
+        }
+        fetchGlobalData();
+    }, [])
+
+    const [globalCovidData, setGlobalCovidData] = useState(null);
+    const providerValue = useMemo(() => ({ globalCovidData, setGlobalCovidData }), [globalCovidData, setGlobalCovidData]);
     const pages = routerPages;
     const classes = useStyles();
 
@@ -82,23 +94,26 @@ const App = () => {
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Router>
+                    <ScrollToTop />
                     <AppHeader classes={classes} />
                     <div>
-                        <AnimatedSwitch
-                            atEnter={{ opacity: 0 }}
-                            atLeave={{ opacity: 0 }}
-                            atActive={{ opacity: 1 }}>
-                            {pages.map((page, i) => {
-                                return (
-                                    <Route
-                                        exact
-                                        path={page.pageLink}
-                                        component={page.view}
-                                        key={i}
-                                    />
-                                );
-                            })}
-                        </AnimatedSwitch>
+                        <CovidDataContext.Provider value={providerValue}>
+                            <AnimatedSwitch
+                                atEnter={{ opacity: 0 }}
+                                atLeave={{ opacity: 0 }}
+                                atActive={{ opacity: 1 }}>
+                                {pages.map((page, i) => {
+                                    return (
+                                        <Route
+                                            exact
+                                            path={page.pageLink}
+                                            component={page.view}
+                                            key={i}
+                                        />
+                                    );
+                                })}
+                            </AnimatedSwitch>
+                        </CovidDataContext.Provider>
                     </div>
                     <AppFooter classes={classes} />
                 </Router>
