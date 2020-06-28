@@ -13,11 +13,13 @@ const StatePage = ({ match }) => {
 
     const topData = globalCovidData?.states?.filter(x => x.id === match.params.id)[0] || null;
     const stateName = topData?.name || 'loading ...';
-    const dailyData = globalCovidData?.dailyData?.map(x => ({ reportDate: x.reportDate, confirmed: x[paramId.toLowerCase()].confirmed, deaths: x[paramId.toLowerCase()].deaths })) || null;
+    const dailyData = globalCovidData?.dailyData?.map(x => ({ reportDate: x.reportDate, confirmed: x[paramId.toLowerCase()].confirmed, deaths: x[paramId.toLowerCase()].deaths, newCases: x[paramId.toLowerCase()].newCases, newDeaths: x[paramId.toLowerCase()].newDeaths })) || null;
 
     const reporData = dailyData?.map(x => x.reportDate) || null;
     const confirmedData = dailyData?.map(x => x.confirmed) || null;
     const deathsData = dailyData?.map(x => x.deaths) || null;
+    const newCasesData = dailyData?.map(x => x.newCases) || null;
+    const newDeathsData = dailyData?.map(x => x.newDeaths) || null;
 
     /*******         
      * 
@@ -62,8 +64,10 @@ const StatePage = ({ match }) => {
             <div className={cx(statePageStyles.margin3, statePageStyles.paddingTop20)}>
                 <h1>{stateName}</h1>
                 <Stats data={topData} />
-                <BarChart header={"Cumulative Covid-19 Cases in " + stateName} title={"New Cases"} labelArray={reporData} dataArray={confirmedData} />
+                <BarChart header={"Daily New Covid-19 Cases in " + stateName} title={"New Cases"} labelArray={reporData} dataArray={newCasesData} />
+                <BarChart header={"Cumulative Covid-19 Cases in " + stateName} title={"Confirmed Cases"} labelArray={reporData} dataArray={confirmedData} />
                 <LineChart header={"Fatal Cases in " + stateName} title={"Deaths"} labelArray={reporData} dataArray={deathsData} />
+                <LineChart header={"New Fatal Cases in " + stateName} title={"New Deaths"} labelArray={reporData} dataArray={newDeathsData} />
             </div>
         </>
 

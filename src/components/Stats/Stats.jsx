@@ -9,7 +9,7 @@ import Skeleton from '@material-ui/lab/Skeleton'
 
 const Stats = ({ data }) => {
 
-    const { confirmed, recovered, deaths, active, newConfirmed, newRecovered, newDeaths, newActive, lastUpdated } = data || {};
+    const { confirmed, recovered, deaths, active, newCases, newRecovered, newDeaths, newActive, lastUpdated } = data || {};
 
     return (
         <>
@@ -25,7 +25,7 @@ const Stats = ({ data }) => {
                                             <CountUp start={0} end={confirmed} duration={2.5} separator="," />
                                         </Typography>
                                         <Typography variant="body1" gutterBottom>
-                                            {newConfirmed > 0 ? '+' + newConfirmed : ''}
+                                            {newCases > 0 ? '+' + newCases : ''}
                                         </Typography>
                                         <Icon fontSize="large" style={{ color: purple['A100'] }}>assessment</Icon>
                                     </CardContent>
