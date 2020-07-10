@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "10c1eeee860be0883d41db59fd9dc2c9",
+    "revision": "467020c99e72634743ae8ba01a5cb893",
     "url": "/Covid19Australia-ReactJS/index.html"
   },
   {
-    "revision": "6ce8a3b195271771560c",
+    "revision": "df7c135fbd710da3d134",
     "url": "/Covid19Australia-ReactJS/static/css/main.4970dcad.chunk.css"
   },
   {
-    "revision": "fc9cb0f0dd7f0f5d3323",
-    "url": "/Covid19Australia-ReactJS/static/js/2.ef0d1bc5.chunk.js"
+    "revision": "413f0fb1825b1a5d2705",
+    "url": "/Covid19Australia-ReactJS/static/js/2.4fdb63d3.chunk.js"
   },
   {
     "revision": "176852ae27885dfd7559e0fb4b332d24",
-    "url": "/Covid19Australia-ReactJS/static/js/2.ef0d1bc5.chunk.js.LICENSE.txt"
+    "url": "/Covid19Australia-ReactJS/static/js/2.4fdb63d3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6ce8a3b195271771560c",
-    "url": "/Covid19Australia-ReactJS/static/js/main.cc77d3e7.chunk.js"
+    "revision": "df7c135fbd710da3d134",
+    "url": "/Covid19Australia-ReactJS/static/js/main.c38125f2.chunk.js"
   },
   {
     "revision": "445e1cb4e8b38a0fa65e",
