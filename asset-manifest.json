@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Covid19Australia-ReactJS/static/css/main.4970dcad.chunk.css",
+    "main.js": "/Covid19Australia-ReactJS/static/js/main.cc77d3e7.chunk.js",
+    "main.js.map": "/Covid19Australia-ReactJS/static/js/main.cc77d3e7.chunk.js.map",
+    "runtime-main.js": "/Covid19Australia-ReactJS/static/js/runtime-main.bb4415ba.js",
+    "runtime-main.js.map": "/Covid19Australia-ReactJS/static/js/runtime-main.bb4415ba.js.map",
+    "static/js/2.ef0d1bc5.chunk.js": "/Covid19Australia-ReactJS/static/js/2.ef0d1bc5.chunk.js",
+    "static/js/2.ef0d1bc5.chunk.js.map": "/Covid19Australia-ReactJS/static/js/2.ef0d1bc5.chunk.js.map",
+    "index.html": "/Covid19Australia-ReactJS/index.html",
+    "precache-manifest.72d9172db799a4d9a9b472561c401e27.js": "/Covid19Australia-ReactJS/precache-manifest.72d9172db799a4d9a9b472561c401e27.js",
+    "service-worker.js": "/Covid19Australia-ReactJS/service-worker.js",
+    "static/css/main.4970dcad.chunk.css.map": "/Covid19Australia-ReactJS/static/css/main.4970dcad.chunk.css.map",
+    "static/js/2.ef0d1bc5.chunk.js.LICENSE.txt": "/Covid19Australia-ReactJS/static/js/2.ef0d1bc5.chunk.js.LICENSE.txt",
+    "static/media/archia-regular-webfont.woff2": "/Covid19Australia-ReactJS/static/media/archia-regular-webfont.02155d96.woff2",
+    "static/media/au_map.a1d4030b.svg": "/Covid19Australia-ReactJS/static/media/au_map.a1d4030b.svg",
+    "static/media/react-logo.svg": "/Covid19Australia-ReactJS/static/media/react-logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bb4415ba.js",
+    "static/js/2.ef0d1bc5.chunk.js",
+    "static/css/main.4970dcad.chunk.css",
+    "static/js/main.cc77d3e7.chunk.js"
+  ]
+}
