@@ -27,7 +27,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "material": "^0.4.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
